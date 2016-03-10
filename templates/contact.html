@@ -1,0 +1,98 @@
+<div class="container" id="contact">
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <section>
+
+                            <div class="heading">
+                                <h2>Estamos aquí para ayudarte</h2>
+                            </div>
+
+                            <p class="lead">¿Quieres saber acerca de algo? </br> ¿Tiene algún tipo de problema con nuestro producto? 
+                                </p>
+                            <p>Por favor no dudes en contactarte con nosotros, nuestro equipo de trabajo está dispuesto a resolver todas tus dudas lo antes posible.</p>
+
+                            <div class="heading">
+                                <h3>¿Cuéntanos como podemos ayudarte?</h3>
+                            </div>
+
+                           <form action="/contact" method="POST" >
+                               {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="fullname">Nombre Completo:</label>
+                                            {{form.fullname}}
+                                    </div>
+                                   
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            {{form.email}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phone">Telefono:</label>
+                                            {{form.phone}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="message">Mensaje</label>
+                                            {{form.message}}
+                                        </div>
+                                    </div>
+                                 <div class="col-sm-12 text-center">
+                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Enviar Mensaje</button>
+
+                                    </div>
+                                </div>
+                               
+                           </form>
+
+                        </section>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <section>
+
+                            <h3 class="text-uppercase">Visita nuestro diseñador</h3>
+
+                            <p>Ideas Publicidad
+                                <br>Calle 1ra Norte # 10A 17
+                               
+                                <strong>Barrio Modelo</strong>
+                            </p>
+
+                            <h3 class="text-uppercase">Llámanos o Escríbenos </h3>
+
+                            <p> Recuerda que todos merecemos descansar utiliza horarios de oficina. Gracias!!</p>
+                            <p><i class="fa fa-whatsapp fa-2x"></i><strong>+57 3146526444</strong>
+                            <p><i class="fa fa-whatsapp fa-2x"></i><strong>+57 3016486906</strong>
+                            </p>
+
+
+
+                            <h3 class="text-uppercase">Cuéntanos como podemos mejorar</h3>
+
+                            <p class="text-muted">Te reúsas a utilizar nuestro formulario escríbenos directamente a </p>
+                            <ul>
+                                <li><strong><a href="mailto:">directoriopopayan@gmail.com</a></strong>
+                                </li>
+                                <li><strong><a href="https://www.facebook.com/DirectorioPopayan"><i class="fa fa-facebook-square fa-3x"></i></a></strong> - Comparte Nuestra Iniciativa</li>
+                            </ul>
+
+                        </section>
+
+                    </div>
+
+                </div>
+                <!-- /.row -->
+
+
+            </div>
+            <!-- /#contact.container -->
