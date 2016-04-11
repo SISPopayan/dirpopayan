@@ -1,1 +1,152 @@
-/* your styles go here */
+/* estilos propios */
+
+.form_search
+{
+	background: yellow;
+	padding: 10px 20px;
+	margin: 0px !important;
+	te
+}
+.icon_category
+{
+ width: 100%; 
+}
+.category_section
+{
+  margin: 1.5em 0;
+  
+  background: rgba(0, 161, 255, 0.27);
+
+}
+.category_section h2
+{
+  color: white;
+  background: red;
+  padding: 1em; 
+}
+.category_section .container
+{
+	margin-top: 1em;
+}
+.category_coment
+{
+	text-align: center;
+	background: #d35400;
+	padding: 0.5em;
+}
+.category_coment h3
+{
+	color: white;
+}
+.img_center
+{
+	margin: 0 auto;
+}
+
+.ad .logo
+{
+	width: auto;
+	max-height: 300px;
+}
+
+.ad .address
+{
+	 color: #3498db;
+    font-size: 2em;
+}
+
+.ad .phone
+{
+	color: red;
+    font-size: 1.5em;
+}
+.ad .category
+{
+	 font-size: 1em;
+    font-style: italic;
+}
+.ad .category img
+{
+	width: 30px;
+	max-width: 30px !important; 
+}
+
+.about_us
+{
+	background:  #3498db;
+	border-radius: 30px;
+	margin: 10px 0px;
+	padding: 30px;
+	
+	color: #fff;
+
+}
+
+.girs_transparente
+{
+	background: rgba(153, 153, 153, 0.48);
+}
+
+@media (min-width: 468px) {
+	.ad .category img
+	{
+		width: 30px;
+	}
+}
+
+.encuesta
+{
+	background: yellow;
+}
+.encuesta .pregunta
+{
+	color: #3498db;
+}
+.encuesta .respuesta
+{
+	color:red;	
+}
+
+.title_category
+{
+	font-style: italic;
+	color: red !important;
+	text-align: center;
+}
+.list_item
+{
+	
+	max-height: 280px;
+
+}
+.list_item img
+{
+	max-height: 200px;
+}
+
+
+@media (min-width: 768px) {
+	.item
+	{
+		height:  220px !important;
+	}
+}
+
+.title_shop
+{
+	margin: 2em;
+	padding: 1em;
+	text-align: center;
+	background: yellow;
+
+}
+.title_shop h2
+{
+	color:#3498db;
+;
+}
+.icon_contact
+{
+	height: 80px;
+	
+}
