@@ -1,0 +1,69 @@
+<section class="encuesta">
+    <div class="row">
+        <div class="col-md-12">
+                 <h2 class="text-center">No te pedimos mucho. Contestanos una de estas dos (2) preguntas</h2>
+        </div>
+        <div class="col-md-6 text-center">
+            <h4 class="pregunta">Te gusto lo que Viste?</h4>
+            <div>
+                <p class="respuesta">Comparte nuestra iniciativa</p>
+                <a href="https://www.facebook.com/directoriopopayan" data-animate-hover="pulse">
+                    <i class="fa fa-facebook-official fa-5x"></i>
+                </a>
+                
+                
+            </div>
+        </div>
+        <div class="col-md-6 text-center ">
+            <h4 class="pregunta">Crees que podemos mejorar<i class="fa fa-question-circle"></i></h4>
+            <div>
+             <p class="respuesta">Cuentanos Como</p>
+                <form action="/contact/" method="POST" class="form-inline">
+                   {% csrf_token %}
+                    <div class="row">
+                        {% if user.is_authenticated %}
+                            <input class="form-control" id="id_fullname" maxlength="255" name="fullname" value="{{user.username}} "type="hidden">
+                           
+                            <input class="form-control" id="id_email" maxlength="254" name="email" value="{{user.email}} "type="hidden">
+                           
+                            <input class="form-control" id="id_phone" maxlength="30" name="phone" value="{{user.phone}} "type="hidden">
+                            
+                            <div class="col-sm-12">
+                                    <div class="form-group">
+                                      <textarea class="form-control"id="id_message" name="message"rows="4" cols="35" placeholder="Dejanos tu Comentario"></textarea>    
+                                    </div>
+                            </div>
+                            
+                            
+
+                          
+                                            
+                        {% else %} 
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    
+                                    <input class="form-control" id="id_fullname" maxlength="255" name="fullname" type="text"  placeholder="Nombre Completo">
+                                    <input class="form-control" id="id_email" maxlength="254" name="email" type="email" placeholder=" Email">
+                                    <input class="form-control" id="id_phone" maxlength="30" name="phone" type="text" placeholder="Telefono">
+                                
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <textarea class="form-control"id="id_message" name="message" rows="4" cols="35" placeholder="Dejanos tu Comentario"></textarea>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Enviar Comentario</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        
+    </div>
+    
+</section>

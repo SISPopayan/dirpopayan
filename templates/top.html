@@ -17,8 +17,27 @@ _________________________________________________________ -->
                             </div>
 
                             <div class="login">
-                                <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Ingresa</span></a>
-                                <a href="#contacto"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Registrate</span></a>
+                                {% if user.is_authenticated %}
+                                    {{user.username}}
+                                    <a href="{% url 'userprofiles:logout' %}">
+                                        <i class="fa fa-sign-out"></i> <span class="text-uppercase">Salir</span>
+                                    </a>
+                                    {% if user.is_superuser %}
+                                        <a href="/admin">Admin</a>
+                                        <a href="#">Nuevo Anuncio</a>
+                                        
+
+                                    {% else %}
+                                        <a href="#"><i class="fa fa-star-o"></i><span class="text-uppercase">Favoritos</span></a>
+                                    {%endif%}
+                                {% else %}
+                                    <a href="#" data-toggle="modal" data-target="#login-modal">
+                                        <i class="fa fa-sign-in"></i> <span class="text-uppercase">Ingresar</span>
+                                    </a>
+                                    
+
+                                {% endif %}
+
                             </div>
 
                         </div>

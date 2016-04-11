@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block 'content' %}
+    {%load staticfiles%}
+	<section class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="text-center">
+	                <h2>Ingresa tus Datos</h2>
+	            </div>
+	            <form action="/login" method="post">
+	            {%csrf_token%}
+	            <input type="hidden" name="action" value="login"></input>
+	                <div class="form-group col-md-3">
+	                    <input type="text" class="form-control" id="email_modal" placeholder="email" name="email">
+	                </div>
+	                <div class="form-group col-md-3">
+	                    <input type="password" class="form-control" id="password_modal" placeholder="password" name="password">
+	                </div>
+
+	                <p class="text-center">
+	                    <button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Ingresar</button>
+	                </p>
+	            </form>
+
+	        </div>
+	        <div class="col-md-12">
+	            <div class="text-center">
+	                <h2>Crea tu Cuenta</h2>
+	            </div>
+	            <form action="/login" method="post">
+	                {%csrf_token%}
+	                <input type="hidden" name="action" value="signup"></input>
+	             
+	                <div class="form-group">
+	                    <input type="text" class="form-control" id="email_modal" placeholder="email" name="email">
+	                </div>
+	                <div class="form-group">
+	                    <input type="password" class="form-control" id="password_modal" placeholder="password" name="password">
+	                </div>
+
+	                <p class="text-center">
+	                    <button class="btn btn-template-main"><i class="fa fa-user"></i>Crear Usuario</button>
+	                </p>
+	            </form>
+	        </div>
+	        <div class="text-center">
+	            <h3>Disfruta del directorio más completo de Popayán</h3>
+	        </div>
+	    </div>
+</section>
+ {% endblock%}

@@ -8,9 +8,16 @@ class Category(models.Model):
 	name=models.CharField(max_length=140)
 	description=models.CharField(max_length=255)
 	image=models.ImageField(blank=True)
+	slug=AutoSlugField(populate_from='name')
 
 	def __str__(self):
 		return self.name
+
+	def get_companies(self):
+		return self.company_set.all()
+
+
+
 type_ads=(
 	('BASICO','Basico'),
 	('FINDME','FindMe'),
@@ -36,15 +43,34 @@ class Company(models.Model):
 	email=models.EmailField()
 	logo=models.ImageField()
 	aboutUs=models.TextField()
-	type_ad=models.CharField(choices=type_ads,default='BASICO',max_length=10)
 	plan=models.ForeignKey(Plan)
-	ranking=models.PositiveIntegerField()
-	slug = AutoSlugField(populate_from='title')
+	ranking=models.PositiveIntegerField(default=0)
+	slug = AutoSlugField(populate_from='name')
 	links=models.ManyToManyField('Link',through='LinksCompany')
-	tags=models.ManyToManyField(Category)
+	category=models.ForeignKey(Category)
+	lat=models.FloatField()
+	lng=models.FloatField()
+	tags=models.ManyToManyField('Tag',through='CompanyTags')
 
 	def __str__(self):
 		return self.name
+	def  get_images(self):
+		return self.image_set.all()
+	def get_phones(self):
+		return self.phonecompany_set.all()
+	def get_links(self):
+		return self.linkscompany_set.all()
+	def get_items(self):
+		return self.item_set.all()
+	
+class Tag(models.Model):
+	title=models.CharField(max_length=255)
+
+class CompanyTags(models.Model):
+	company=models.ForeignKey(Company)
+	tag=models.ForeignKey(Tag)
+
+
 
 class PhoneCompany(models.Model):
 	company=models.ForeignKey(Company)
@@ -58,7 +84,7 @@ class Item(models.Model):
 	company=models.ForeignKey(Company)
 	title=models.CharField(max_length=255)
 	description=models.TextField()
-	price=models.DecimalField(max_digits=12,decimal_places=2)
+	price=models.PositiveIntegerField(default=0)
 	image=models.ImageField(blank=True)
 
 	def __str__(self):
@@ -74,6 +100,7 @@ class Link(models.Model):
 class LinksCompany(models.Model):
 	company=models.ForeignKey(Company)
 	link=models.ForeignKey(Link)
+	url=models.CharField(max_length=255)
 
 
 class Image(models.Model):
@@ -81,13 +108,6 @@ class Image(models.Model):
 	alt=models.CharField(max_length=255)
 	image=models.ImageField()
 	company=models.ForeignKey(Company)
-
-class Map(models.Model):
-	lat=models.FloatField()
-	lng=models.FloatField()
-	company=models.ForeignKey(Company)
-
-
 
 
 class DetPlan(models.Model):

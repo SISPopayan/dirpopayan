@@ -10,7 +10,7 @@
                     <div class="container">
                         <div class="navbar-header">
 
-                            <a class="navbar-brand home" href="#">
+                            <a class="navbar-brand home" href="{% url 'home' %}">
                                 <img src="{%static 'img/logo.png'%}" alt="Universal logo" class="hidden-xs hidden-sm">
                                 <img src="{%static 'img/logo-small.png'%}" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Directorio Popayán</span>
                             </a>
@@ -27,35 +27,48 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li class=" active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inicio</a>
+                                    <a href="{% url 'home' %}" class="dropdown-toggle" data-toggle="dropdown">Inicio</a>
                              
                                 </li>
                                 
                                 <li >
-                                    <a href="#contacto" >Contacto</a>
+                                    <a href="/#contacto" >Contacto</a>
+                                </li>
+                                 <li class="dropdown use-yamm yamm-fw">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="yamm-content">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <img src="{%static 'img/categorias.png'%}" class="img-responsive hidden-xs" alt="Categorias del Directorio Popayán">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <h5>Que Deseas Buscar Hoy</h5>
+                                                        <ul>
+                                                        
+                                                            {% for category in categories %}
+                                                                <li >
+                                                                    <a href="/categoria/{{category.slug}}" style="color: red;">{{category.name}}</a>
+                                                                </li>
+                                                            {%endfor%}
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
 
                         </div>
                         <!--/.nav-collapse -->
 
+                        {%include "form_search.html"%}    
 
-
-                        <div class="navbar-collapse" id="search">
-
-                            <form class="navbar-form" role="search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="¿Que deseas Busacar hoy?">
-                                    <span class="input-group-btn">
-                                    		
-                   						 <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
-
-               						 </span>
-                                </div>
-                            </form>
-
-                        </div>
-                        <!--/.nav-collapse -->
+                                               <!--/.nav-collapse -->
 
                     </div>
 

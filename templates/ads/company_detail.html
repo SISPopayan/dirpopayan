@@ -1,0 +1,261 @@
+
+{% extends "base.html" %}
+
+{% block 'content' %}
+    {%load staticfiles%}
+<div id="content">
+    <div class="container">
+
+        <section class="no-mb">
+            <div class="row ad">
+                <div class="col-sm-6" >
+                    <figure><img src="{{company.logo.url}}" class="img-responsive img_center logo" ></figure>
+                </div>
+                <div class="col-sm-6" >
+                    <h1>{{company.name}}</h1>
+                    <p class="address">{{company.address}}</p>
+                    <p class="phone">{{company.phone_number}}</p>
+                    <p class="category"><img src="{{company.category.image.url}}" class="icon_category">{{company.category.name}}</p>
+                </div>
+            </div>
+        </section>
+
+        {%if company.plan.type_ad != 'BASICO'%}
+            <section>
+                <div class="about_us">
+                    <p class="lead">{{company.aboutUs}}</p>
+                </div>
+            </section>
+            <section  class="girs_transparente">
+                <div class="project owl-carousel">
+                    {%for imagen in company.get_images%}
+                    <div class="item">
+                        <img src="{{imagen.image.url}}" alt="image.alt" class="img-responsive img_center">
+                    </div>
+                    {%endfor%}
+                </div>
+                <!-- /.project owl-slider -->
+            </section>
+        
+
+            <section>
+                <div class="row portfolio-project">
+                    <div class="col-sm-9">
+                        <div class="heading">
+                            <h3>Encuéntranos Fácil </h3>
+                        </div>
+                        <div id="map">
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-3 project-more">
+                        <div class="heading">
+                            <h3>Teléfonos de Contacto</h3>
+                        </div>
+                        <h4>{{company.phone_number}}</h4>
+                        <p>Oficina Principal</p>
+                        {%for p in company.get_phones%}
+                            <h4>{{p.phone}}</h4>
+                            <p>{{p.description}}</p>
+
+                        {%endfor%}
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="row portfolio">
+
+                    <div class="col-sm-12">
+                        <div class="heading">
+                            <h3>Mas información:</h3>
+                        </div>
+                    </div>
+
+                    {%for l in company.get_links%}    
+                       
+                       <div class="col-sm-1 col-xs-2">
+                            <figure>
+                                <a href="{{l.url}}" target="_blank">
+                                    <img src="{{l.link.icon.url}}" class="img-responsive img_center" alt="{{l.link.title}}">
+                                </a>
+                            </figure>
+                            
+                            <a href="{{l.url}}" target="_blank"><p class="text-center">{{l.link.title}}</p></a>
+                        </div>
+                    {%endfor%}
+                </div>
+            </section>
+        {%endif%}
+    
+        {% if company.plan.type_ad == 'STARTUP'  %}
+            <section>
+                <div class="col-sm-12 title_shop"> <h2>Te presentamos Nuestros Productos mas Representativos</h2></div>   
+                <div class="row products">
+                    {% for item in company.get_items %}
+                        <div class="col-md-2 col-sm-4">
+                            <div class="product">
+                                <div class="image item">
+                                    <a href="shop-detail.html">
+                                        <img src="{{item.image.url}}" alt="{{item.title}}" class="img-responsive image1">
+                                    </a>
+                                </div>
+                                <!-- /.image -->
+                                <div class="text">
+                                    <h3><a href="#">{{item.title}}</a></h3>
+                                    <p>
+                                   <button type="button" class="btn btn-template-main" data-toggle="modal" data-target="#contactCompany" data-whatever="{{item.title}}"><i class="fa fa-shopping-cart"></i>Contactar</button>
+                                    </p>
+                                    <p class="price">${{item.price}}</p>
+                                    
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>            
+        {% endif %}
+    </div>
+    <!-- /.container -->
+
+
+</div>
+
+    {%include "encuesta1.html" %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="contactCompany" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel"><img src="{{company.logo.url}}" class="img-responsive icon_contact img_center " >{{company.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <section>
+            <div class="heading">
+                <h2>Estas interezado en <span id="item_title"></span> </h2>
+            </div>
+
+            <p class="lead">Envianos tu Solicitud por medio del siguiente formulario 
+                </p>
+            <form action="/contactcompany/" method="POST" >
+               {% csrf_token %}
+                
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 ">
+                            <div class="form-group">
+                                <label for="fullname">Nombre Completo:</label>
+                                <input type="text" name="fullname" class="form-control"></input>
+                                 <label for="email">Email:</label>
+                                <input type="email" name="email" class="form-control"></input>
+                            </div>
+                        </div>
+                    
+                    
+                        <div class=" col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="phone">Telefono:</label>
+                                <input type="text" name="phone" class="form-control"></input>
+                                <label for="phone">Cantidad:</label>
+                                <input type="number" class="form-control" min="0" name="cantidad" max="999"></input>
+                            </div>    
+                        </div>
+                               
+                    
+                        <div class="col-md-6 col-sm-6">
+                            <div  class="form-group">
+                                <label for="message">Notas</label>
+                                <textarea name="notas" class="form-control"></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Enviar Mensaje</button>
+                            </div>
+                        </div>
+                    </dv>
+                
+               
+           </form>
+
+        </section>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}
+
+
+
+
+
+
+
+
+
+{% block js %}
+<script type="text/javascript">
+    
+        $('#contactCompany').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+
+          var recipient = button.data('whatever') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find("#item_title").text(''+recipient)
+
+          
+          
+          
+        })
+    
+</script>
+
+<script type="text/javascript">
+    function initMap() {
+      
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: {lat: {{company.lat}}, lng: {{company.lng}} }
+        });
+       
+        var map_icon = {
+            url: "{{company.logo.url}}",
+            scaledSize: new google.maps.Size(40,40), // scaled Size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        }
+        var contentString='<div class="row ad"><div class="col-sm-12"><h1>{{company.name}}</h1><p class="address">{{company.address}}</p><p class="phone">{{company.phone_number}}</p></div></div>'
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+          
+        var marker = new google.maps.Marker({
+            position: {lat: {{company.lat}}, lng: {{company.lng}} },
+            map: map,
+            icon: map_icon
+        });
+        
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+
+</script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJk1321u7YS1QpIGF7eYc_CqXNwtcFfRQ&signed_in=true&callback=initMap"></script>
+    
+{% endblock js %}
+
+

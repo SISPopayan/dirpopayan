@@ -1,0 +1,44 @@
+<div class="col-sm-6 col-sm-3">
+
+    <div class="list_item">
+        <div class="box-image ">
+            <div class="image">
+            	<h4 style="margin-top:50px;" > {{company.name}}</h4>
+                <img src="{{company.logo.url}}" alt="{{company.name}}" class="img-responsive" style="margin: 0 auto;">
+            </div>
+            <div class="bg"></div>
+            <div class="name">
+                <h3><a href="{% url 'ads:detail' company.slug %}">{{company.address}}</a><br>
+               		{{company.phone_number}} <br>
+               	</h3> 
+            </div>
+            <div class="text">
+                <p class="hidden-sm hidden-lg hidden-sm">{{company.adress}}</p>
+                <p class="buttons">
+                    <a href="{% url 'ads:detail' company.slug %}" class="btn btn-template-transparent-primary">Ver</a>
+                </p>
+            </div>
+                                         
+            
+        </div>
+    </div>
+
+    {%if company.plan.type_ad == 'FINDME'%}
+        <div class="ribbon sale">
+            <div class="theribbon"><i class="fa fa-star fa-2"></i>VIP</div>
+            <div class="ribbon-background"></div>
+        </div>    
+    {% endif %}
+     {%if company.plan.type_ad == 'STARTUP'%}
+        <div class="ribbon sale">
+            <div class="theribbon"><i class="fa fa-star fa-2"></i>VIP</div>
+            <div class="ribbon-background"></div>
+        </div>    
+        <div class="ribbon new">
+            <div class="theribbon"><i class="fa fa-shopping-cart"></i></div>
+            <div class="ribbon-background"></div>
+        </div>    
+    {% endif %}
+    
+    
+</div>

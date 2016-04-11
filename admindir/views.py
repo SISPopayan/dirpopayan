@@ -2,7 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from .forms import ContactForm
+from  ads.models import Category
 from django.core.mail import send_mail
+from django.contrib.auth import logout
 
 def new_Contact(request):
 	
@@ -28,4 +30,18 @@ def new_Contact(request):
 
 def home(request):
 	form = ContactForm()
-	return render(request,'index.html',{'form':form})
+	
+	template = loader.get_template('index.html')
+	context ={
+
+		'form':form
+	}
+	return HttpResponse(template.render(context,request))
+
+def category_show(request,slug):
+	category = get_object_or_404(Category,slug=slug)
+	template = loader.get_template('category_show.html')
+	context= {
+		'category':category
+	}
+	return HttpResponse(template.render(context,request))

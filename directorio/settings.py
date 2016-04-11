@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'directorio.config_general.datos_globales',
             ],
         },
     },
@@ -141,4 +142,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'directoriopopayan@gmail.com'
 EMAIL_HOST_PASSWORD = 'AdminDIRECTORIO2016'
 DEFAULT_FROM_EMAIL = 'directoriopopayan@gmail.com'
+
+LOGIN_URL='/'
+LOGIN_REDIRECT_URL='/'
 

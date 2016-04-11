@@ -1,0 +1,114 @@
+
+{% extends "base.html" %}
+
+{% block 'content' %}
+    {%load staticfiles%}
+
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-md-">
+                <h1>Empresas que confian en nosostros</h1>
+            </div>
+            <div class="col-sm-5">
+                <ul class="breadcrumb">
+                    <li><a href="/">Inicio</a>
+                    </li>
+                    <li>Listado de Empresas</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container">
+
+        <section>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="heading">
+                        <h2>Te ofrecemos una gran variedad</h2>
+                    </div>
+                    <p class="text-muted lead">Te ofrecemos un listado con grandes oportunidades para que encuentres la mejor Para ti.</p>
+                </div>
+         
+            <!-- *** LEFT COLUMN ***
+    _________________________________________________________ -->
+
+                <div class="col-sm-9">
+
+
+                    <div class="row portfolio">
+                       {% for company in companies %} 	
+                            
+                            {%include "ads/item_list_company.html"%}
+                        {% endfor %}
+                    </div>    
+                    
+                        {% if is_paginated %}
+                            <div class="pages">
+                                <p class="loadMore">
+                                    <button href="#" class="btn btn-template-main"><i class="fa fa-chevron-down"></i> Tenemos aun más </button>
+                                </p>
+
+                               <ul class="pagination">
+                            
+                                    {% if page_obj.has_previous %}
+                                        <li><a href="/empresas?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                    {% endif %}
+
+                                    <li><a> Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</a></li>
+                               
+                                    {% if page_obj.has_next %}
+                                        <li><a href="/empresas?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {%endif%}
+                    
+                </div>
+                <div class="col-sm-3">
+
+                <!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+                <div class="panel panel-default sidebar-menu">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Categorias</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked category-menu">
+                            {% for cat in categories %}
+                                <li><a href="/categoria/{{cat.slug}}">{{cat.name}}</a></li>
+                            {%endfor%}
+                        </ul>
+
+                    </div>
+                </div>
+
+                
+                <!-- *** MENUS AND FILTERS END *** -->
+
+                <div class="banner">
+                    <a href="shop-category.html">
+                        <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
+                    </a>
+                </div>
+                <!-- /.banner -->
+
+            </div>
+            <!-- /.col-sm-3 -->
+            </div>
+        </section>
+        <div>
+             <p class="text-muted lead">No Encontraste lo que necesitabas. Escribirnos y nosotros lo traeremos al Directorio para tu Próxima Visita. <a href="/#contacto">Dejanos tu Mensaje Aquí!</a></p>
+        </div>
+    </div>
+</div>
+            <!-- /.container -->
+{% endblock%}

@@ -2,7 +2,7 @@
 _________________________________________________________ -->
 
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-lg">
 
                 <div class="modal-content">
                     <div class="modal-header">
@@ -10,23 +10,51 @@ _________________________________________________________ -->
                         <h4 class="modal-title" id="Login">Hola! Bienvenido</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="customer-orders.html" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="email_modal" placeholder="email">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <h2>Ingresa tus Datos</h2>
+                                </div>
+                                <form action="/login" method="post">
+                                {%csrf_token%}
+                                <input type="hidden" name="action" value="login"></input>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email_modal" placeholder="email" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password_modal" placeholder="password" name="password">
+                                    </div>
+
+                                    <p class="text-center">
+                                        <button type="submit" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Ingresar</button>
+                                    </p>
+                                </form>
+
                             </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password_modal" placeholder="password">
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <h2>Crea tu Cuenta</h2>
+                                </div>
+                                <form action="/login" method="post">
+                                    {%csrf_token%}
+                                    <input type="hidden" name="action" value="signup"></input>
+                                 
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email_modal" placeholder="email" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password_modal" placeholder="password" name="password">
+                                    </div>
+
+                                    <p class="text-center">
+                                        <button class="btn btn-template-main"><i class="fa fa-user"></i>Crear Usuario</button>
+                                    </p>
+                                </form>
                             </div>
-
-                            <p class="text-center">
-                                <button class="btn btn-template-main"><i class="fa fa-sign-in"></i> Ingresar</button>
-                            </p>
-
-                        </form>
-
-                        <p class="text-center text-muted">Aun no tienes tu cuenta?</p>
-                        <p class="text-center text-muted"><a href="customer-register.html"><strong>Registrate Ya</strong></a>! Disfruta del directorio más completo de Popayán</p>
-
+                            <div class="text-center">
+                                <h3>Disfruta del directorio más completo de Popayán</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
